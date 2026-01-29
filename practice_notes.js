@@ -79,3 +79,65 @@ const Child = ()=> {
 )
 }
 export default Child
+
+// built in hooks 
+// Basic / Core Hooks
+
+// useState - Manage local component state
+
+const [count, setCount] = useState(0);
+//Triggers re-render
+//State is preserved between renders
+
+// useEffect - Handle side effects (API calls, subscriptions, timers)
+
+useEffect(()=> {
+	console.log('Component mounted');
+	return ()=> console.log(''clean up);
+
+},[])
+
+//Runs after render
+// Cleanup prevents memory leaks
+
+// UseContext - Consume context without prop drilling
+const theme = useContext(ThemeContext)
+
+// Performance Hooks
+
+// useMemo
+// Memoize computed values
+
+const total = useMemo(()=> heavyCalculation(price),[price])
+
+// useCallback - Prevents unnecessary re-renders
+//Memoize funcions
+
+const handleClick = useCallback(()=> {
+	setCount(c=> c+1)
+},[])
+
+// state management hooks
+// useReducer - Better than useState for complex updates
+
+const [state, dispatch] = useReducer(reducer,initialState)
+
+| Hook                   | Purpose                |
+| ---------------------- | ---------------------- |
+| `useState`             | Local state            |
+| `useEffect`            | Side effects           |
+| `useContext`           | Context consumption    |
+| `useRef`               | DOM / persistent value |
+| `useMemo`              | Memoize value          |
+| `useCallback`          | Memoize function       |
+| `useReducer`           | Complex state          |
+| `useLayoutEffect`      | DOM sync effect        |
+| `useTransition`        | Non-urgent updates     |
+| `useDeferredValue`     | Defer slow updates     |
+| `useId`                | Unique IDs             |
+| `useImperativeHandle`  | Control ref            |
+| `useSyncExternalStore` | External store         |
+| `useDebugValue`        | DevTools info          |
+
+
+
