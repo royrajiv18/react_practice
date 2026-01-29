@@ -139,5 +139,33 @@ const [state, dispatch] = useReducer(reducer,initialState)
 | `useSyncExternalStore` | External store         |
 | `useDebugValue`        | DevTools info          |
 
+//////////////////////////////////////////////////////////////////////////////
+// Debounce
 
+// debounce
+
+const DebounceSearch = ()=> {
+		
+	const [query, setQuery]= useState('');
+
+	useEffect(()=> {
+	if(!query) return
+		const timer = setTimeout(()=>{
+						searchApi(query)
+					},500)
+
+		return ()=> clearTimeout(timer);
+}, [query])
+
+	return (
+		
+			<input type="text"
+			value = {query}
+			onChange = {(e)=> setQuery(e.target.value)}
+			placeholder = "Search..."
+		
+)
+
+
+}
 
