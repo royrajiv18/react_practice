@@ -228,3 +228,15 @@ const App = ()=> {
 export default App;
 
 /////////////////////////////////////////////////////////////////////
+// lazy loading images and component
+
+const Gallery = ()=> React.lazy(()=>import('./Gallery'));
+
+<Suspense fallback = {<p>Loading Gallery ...</p>}>
+	<Gallery />
+</Suspense>
+
+// inside Gallery
+<img src = 'img1.jpg' loading='lazy' />
+<img  src='img2.jpg' loading = 'lazy' />
+/////////////////////////////////////////////////////////////
