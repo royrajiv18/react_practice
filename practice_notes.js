@@ -271,3 +271,5 @@ export default FocusInput;
 
 // onClick = {clicked} pass the fn reference, calls clicked on onClick, use when no arguments are needed
 // onClick = {()=> clicked() creates new arrow fn on each click, useful in case of passing arguments, multiple statements present, causes re render every time
+
+// React Portal - A React Portal allows rendering a component into a different DOM node outside its parent hierarchy while keeping it in the same React tree.
