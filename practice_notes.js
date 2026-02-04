@@ -272,4 +272,52 @@ export default FocusInput;
 // onClick = {clicked} pass the fn reference, calls clicked on onClick, use when no arguments are needed
 // onClick = {()=> clicked() creates new arrow fn on each click, useful in case of passing arguments, multiple statements present, causes re render every time
 
-// React Portal - A React Portal allows rendering a component into a different DOM node outside its parent hierarchy while keeping it in the same React tree.
+////////////////////////// React Portal - A React Portal allows rendering a component into a different DOM node outside its parent hierarchy 
+//while keeping it in the same React tree.
+
+// in index.html
+<div id="root"></div>
+<div id="portal-root"></div>
+
+// Modal component
+import React from "react";
+import ReactDOM from "react-dom";
+
+const Modal = ({ children }) => {
+  return ReactDOM.createPortal(
+    <div className="modal-overlay">
+      <div className="modal-content">
+        {children}
+      </div>
+    </div>,
+    document.getElementById("portal-root")
+  );
+};
+
+export default Modal;
+// parent component
+import React, { useState } from "react";
+import Modal from "./Modal";
+
+const App = () => {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <>
+      <button onClick={() => setOpen(true)}>
+        Open Modal
+      </button>
+
+      {open && (
+        <Modal>
+          <h2>Portal Modal</h2>
+          <button onClick={() => setOpen(false)}>Close</button>
+        </Modal>
+      )}
+    </>
+  );
+};
+
+export default App;
+
+
