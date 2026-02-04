@@ -320,4 +320,36 @@ const App = () => {
 
 export default App;
 
+// lifting state up example
+
+// child component A
+	const CounterDisplay = ({counter})=> {
+		return <p>Counter: {counter}</p>
+	}
+
+// child component B
+
+const CounterButton = ({onIncrement})=> {
+	return <button onClick={onIncrement}>Increment Counter</button>
+}
+
+// Parent component (common ancestor)
+const App =()=> {
+	const [counter, setCounter]= useState(0);
+	const handleIncrement = ()=> {
+		setCounter(counter + 1);
+	}
+	return (
+		<div>
+		<CounterDisplay counter={counter} />
+		<CounterButton onclick={handleIncrement} />
+		</div>
+	);
+};
+
+export default App;
+
+
+
+
 
