@@ -240,3 +240,34 @@ const Gallery = ()=> React.lazy(()=>import('./Gallery'));
 <img src = 'img1.jpg' loading='lazy' />
 <img  src='img2.jpg' loading = 'lazy' />
 /////////////////////////////////////////////////////////////
+
+//// useRef hook returns a mutable object with a .current property that we can use to store a value
+	//// unlike useState, updating a useRef value does not trigger a component re-render
+//Ex - 
+import React, {useRef} from 'react';
+
+const FocusInput = ()=> {
+
+	const inputRef = useRef(null);
+	const focusInput = ()=> {
+		inputRef.current.focus();
+	};
+
+	return (
+		<div>
+		<input ref={inputRef} type="text" />
+		<button onClick={focusInput} >Focus Input</button>
+		</div>
+		
+	);
+	
+};
+
+export default FocusInput;
+
+//////////////////////////////////////////
+
+// diffrence between onclick = {clicked} and onClick = {()=> clicked()}
+
+// onClick = {clicked} pass the fn reference, calls clicked on onClick, use when no arguments are needed
+// onClick = {()=> clicked() creates new arrow fn on each click, useful in case of passing arguments, multiple statements present, causes re render every time
